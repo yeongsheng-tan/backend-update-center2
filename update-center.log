@@ -1,0 +1,3 @@
+Reusing the locally cached http://nysmba001.usnyctd.amrs.bankofamerica.com:8000/artifacts/content/groups/mba-group/.index/nexus-maven-repository-index.gz at /tmp/maven-index/mba-group/index.gz
+core
+=> {"buildDate":"Oct 28, 2012","name":"core","sha1":"SOIm4UXaWlkQQRoFkeLjl8isvMM=","url":"http://updates.jenkins-ci.org/download/war/1.488/jenkins.war","version":"1.488"}

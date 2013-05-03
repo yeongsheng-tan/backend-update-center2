@@ -28,7 +28,8 @@ import java.net.URL;
 public class DefaultMavenRepositoryBuilder {
     public static MavenRepositoryImpl createStandardInstance() throws Exception {
         MavenRepositoryImpl instance = new MavenRepositoryImpl();
-        instance.addRemoteRepository("public", new URL("http://repo.jenkins-ci.org/public/"));
+        //instance.addRemoteRepository("public", new URL("http://repo.jenkins-ci.org/public/"));
+        instance.addRemoteRepository("mba-releases", new URL("http://nysmba001.usnyctd.amrs.bankofamerica.com:8000/artifacts/content/repositories/mba-releases/"));
 
         return instance;
     }

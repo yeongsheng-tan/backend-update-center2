@@ -169,36 +169,36 @@ public class Plugin {
      * If that fails, find the nearest name from the children list.
      */
     private RemotePage findPage(ConfluencePluginList cpl) throws IOException {
-        try {
+        //try {
             String p = OVERRIDES.getProperty(artifactId);
             if(p!=null)
-                return cpl.getPage(p);
-        } catch (RemoteException e) {
-            System.err.println("** Override failed for "+artifactId);
-            e.printStackTrace();
-        }
+                //return cpl.getPage(p);
+        //} catch (RemoteException e) {
+        //    System.err.println("** Override failed for "+artifactId);
+        //    e.printStackTrace();
+        //}
 
         if (pom != null) {
             String wikiPage = selectSingleValue(pom, "/project/url");
             if (wikiPage != null) {
-                try {
-                    return cpl.getPage(wikiPage); // found the confluence page successfully
-                } catch (RemoteException e) {
-                    System.err.println("** Failed to fetch "+wikiPage);
-                    e.printStackTrace();
-                } catch (IllegalArgumentException e) {
-                    System.err.println(e.getMessage());
-                }
+                //try {
+                    //return cpl.getPage(wikiPage); // found the confluence page successfully
+                //} catch (RemoteException e) {
+                //    System.err.println("** Failed to fetch "+wikiPage);
+                //    e.printStackTrace();
+                //} catch (IllegalArgumentException e) {
+                //    System.err.println(e.getMessage());
+                //}
             }
         }
 
         // try to guess the Wiki page
-        try {
-            return cpl.findNearest(artifactId);
-        } catch (RemoteException e) {
-            System.err.println("** Failed to locate nearest");
-            e.printStackTrace();
-        }
+        //try {
+            //return cpl.findNearest(artifactId);
+        //} catch (RemoteException e) {
+        //    System.err.println("** Failed to locate nearest");
+        //    e.printStackTrace();
+        //}
 
         return null;
     }

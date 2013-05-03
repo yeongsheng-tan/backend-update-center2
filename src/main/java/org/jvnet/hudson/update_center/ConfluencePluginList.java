@@ -52,7 +52,7 @@ import java.util.regex.Pattern;
  * @author Kohsuke Kawaguchi
  */
 public class ConfluencePluginList {
-    private final ConfluenceSoapService service;
+    private final ConfluenceSoapService service=null;
     private final Map<String,RemotePageSummary> children = new HashMap<String, RemotePageSummary>();
     private final String[] normalizedTitles;
 
@@ -60,14 +60,15 @@ public class ConfluencePluginList {
     private final Map<Long,String[]> labelCache = new HashMap<Long, String[]>();
 
     private String wikiSessionId;
-    private final String WIKI_URL = "https://wiki.jenkins-ci.org/";
+    private final String WIKI_URL = "http://wiki.jenkins-ci.org/";
+    //private final String WIKI_URL = "http://code.bankofamerica.com/docs/";
 
     public ConfluencePluginList() throws IOException, ServiceException {
-        service = Confluence.connect(new URL(WIKI_URL));
-        RemotePage page = service.getPage("", "JENKINS", "Plugins");
+        //service = Confluence.connect(new URL(WIKI_URL));
+        //RemotePage page = service.getPage("", "JENKINS", "Plugins");
 
-        for (RemotePageSummary child : service.getChildren("", page.getId()))
-            children.put(normalize(child.getTitle()),child);
+        //for (RemotePageSummary child : service.getChildren("", page.getId()))
+        //    children.put(normalize(child.getTitle()),child);
         normalizedTitles = children.keySet().toArray(new String[children.size()]);
     }
 
@@ -91,7 +92,8 @@ public class ConfluencePluginList {
         if (EditDistance.editDistance(nearest,pluginArtifactId) <= 1) {
             System.out.println("** No wiki page specified.. picking one with similar name."
                                + "\nUsing '"+nearest+"' for "+pluginArtifactId);
-            return service.getPage("","JENKINS",children.get(nearest).getTitle());
+            //return service.getPage("","JENKINS",children.get(nearest).getTitle());
+	    return null;
         } else
             return null;    // too far
     }
@@ -115,10 +117,10 @@ public class ConfluencePluginList {
             String pageName = url.substring(p.length()).replace('+',' '); // poor hack for URL escape
 
             RemotePage page = pageCache.get(pageName);
-            if (page==null) {
-                page = service.getPage("", "JENKINS", pageName);
-                pageCache.put(pageName,page);
-            }
+            //if (page==null) {
+            //    page = service.getPage("", "JENKINS", pageName);
+            //    pageCache.put(pageName,page);
+            //}
             return page;
         }
         throw new IllegalArgumentException("** Failed to resolve "+url);
